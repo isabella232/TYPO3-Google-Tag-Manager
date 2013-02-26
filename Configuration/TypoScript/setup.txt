@@ -1,0 +1,23 @@
+plugin.google_tag_manager = USER
+plugin.google_tag_manager {
+	userFunc      = tx_extbase_core_bootstrap->run
+	extensionName = GoogleTagManager
+	pluginName    = Tracking
+	controller    = Tracking
+	action        = index
+	switchableControllerActions {
+		Tracking {
+			1 = index
+		}
+	}
+	view {
+		templateRootPath = {$plugin.google_tag_manager.view.templateRootPath}
+		partialRootPath  = {$plugin.google_tag_manager.view.partialRootPath}
+		layoutRootPath   = {$plugin.google_tag_manager.view.layoutRootPath}
+	}
+	settings {
+		enable = 0
+		tagId = GTM-XXXX
+	}
+}
+page.1 < plugin.google_tag_manager
