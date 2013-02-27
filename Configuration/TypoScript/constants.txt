@@ -1,4 +1,4 @@
-plugin.google_tag_manager {
+const.tx_googletagmanager {
 	view {
 		# cat=plugin.google_tag_manager/file; type=string; label=LLL:EXT:google_tag_manager/Resources/Private/Language/locallang_db.xml:file.templateRootPath
 		templateRootPath = EXT:google_tag_manager/Resources/Private/Templates/
@@ -8,6 +8,9 @@ plugin.google_tag_manager {
 		layoutRootPath = EXT:google_tag_manager/Resources/Private/Layouts/
 	}
 	settings {
-		
+		# cat=plugin.google_tag_manager/common; type=boolean; label=LLL:EXT:google_tag_manager/Resources/Private/Language/locallang_db.xml:common.enable
+		enable = 1
+		# cat=plugin.google_tag_manager/common; type=string; label=LLL:EXT:google_tag_manager/Resources/Private/Language/locallang_db.xml:common.tagId
+		tagId = GTM-XXX
 	}
 }

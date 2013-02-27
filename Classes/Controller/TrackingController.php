@@ -4,9 +4,8 @@
  *
  */
 class Tx_GoogleTagManager_Controller_TrackingController extends Tx_Extbase_MVC_Controller_ActionController {
-	
 	/**
-	 * index action
+	 * index action generate the base tag code
 	 */
 	public function indexAction() {
 		if(!$this->settings['enable']){
