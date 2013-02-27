@@ -12,6 +12,7 @@
 			<label index="file.layoutRootPath">Path to template layouts (FE):You can alter this, though the standard plugin doesn't use layouts ...</label>
 			<label index="common.tagId">Tag Manager ID</label>
 			<label index="common.enable">Enable the Tag Manager</label>
+			<label index="common.dataLayerVersion">Version of the Datalayer of your application</label>
 		</languageKey>
 	</data>
 </T3locallang>

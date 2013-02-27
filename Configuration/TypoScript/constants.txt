@@ -12,5 +12,7 @@ const.tx_googletagmanager {
 		enable = 1
 		# cat=plugin.google_tag_manager/common; type=string; label=LLL:EXT:google_tag_manager/Resources/Private/Language/locallang_db.xml:common.tagId
 		tagId = GTM-XXX
+		# cat=plugin.google_tag_manager/common; type=string; label=LLL:EXT:google_tag_manager/Resources/Private/Language/locallang_db.xml:common.dataLayerVersion
+		dataLayerVersion = 0
 	}
 }

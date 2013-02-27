@@ -18,5 +18,6 @@ plugin.tx_googletagmanager {
 	settings {
 		enable = {$const.tx_googletagmanager.settings.enable}
 		tagId = {$const.tx_googletagmanager.settings.tagId}
+		dataLayerVersion = {$const.tx_googletagmanager.settings.dataLayerVersion}
 	}
 }

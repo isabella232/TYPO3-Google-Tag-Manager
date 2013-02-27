@@ -12,5 +12,6 @@ class Tx_GoogleTagManager_Controller_TrackingController extends Tx_Extbase_MVC_C
 			throw new Tx_Extbase_MVC_Exception_StopAction ();
 		}
 		$this->view->assign('tagManagerID', $this->settings['tagId']);
+		$this->view->assign('dataLayerVersion', $this->settings['dataLayerVersion']);
 	}
 }
