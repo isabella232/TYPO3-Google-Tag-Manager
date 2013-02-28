@@ -1,4 +1,15 @@
 <?php
+
+/***************************************************************
+ * Extension Manager/Repository config file for ext "google_tag_manager".
+ *
+ * Auto generated 28-02-2013 11:05
+ *
+ * Manual updates:
+ * Only the data in the array - everything else is removed by next
+ * writing. "version" and "dependencies" must not be touched!
+ ***************************************************************/
+
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'Google Tag Manager',
 	'description' => 'Create a interface for Google Tag Manager',
@@ -7,11 +18,11 @@ $EM_CONF[$_EXTKEY] = array(
 	'author_email' => 'axel.jung@aoemedia.de',
 	'author_company' => 'AOE Media GmbH',
 	'shy' => '',
-	'dependencies' => '',
+	'dependencies' => 'cms,extbase,fluid',
 	'conflicts' => '',
 	'priority' => '',
 	'module' => '',
-	'state' => 'beta',
+	'state' => 'alpha',
 	'internal' => '',
 	'uploadfolder' => 0,
 	'createDirs' => '',
@@ -22,8 +33,8 @@ $EM_CONF[$_EXTKEY] = array(
 	'constraints' => array(
 		'depends' => array(
 			'cms' => '',
-			'typo3' => '4.5.0',
-			'php' => '5.2.0',
+			'typo3' => '4.5.0-0.0.0',
+			'php' => '5.2.0-0.0.0',
 			'extbase' => '1.3.0',
 			'fluid' => '1.3.0',
 		),
@@ -32,6 +43,9 @@ $EM_CONF[$_EXTKEY] = array(
 		'suggests' => array(
 		),
 	),
-	'_md5_values_when_last_written' => '',
+	'_md5_values_when_last_written' => 'a:10:{s:12:"ext_icon.gif";s:4:"4461";s:17:"ext_localconf.php";s:4:"3236";s:14:"ext_tables.php";s:4:"7404";s:41:"Classes/Controller/TrackingController.php";s:4:"2884";s:43:"Classes/ViewHelpers/DataLayerViewHelper.php";s:4:"050a";s:38:"Configuration/TypoScript/constants.txt";s:4:"8dd3";s:34:"Configuration/TypoScript/setup.txt";s:4:"c5db";s:43:"Resources/Private/Language/locallang_db.xml";s:4:"fb79";s:47:"Resources/Private/Templates/Tracking/Index.html";s:4:"7666";s:14:"doc/manual.sxw";s:4:"e645";}',
+	'suggests' => array(
+	),
 );
+
 ?>
