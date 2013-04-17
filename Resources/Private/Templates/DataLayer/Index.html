@@ -1,0 +1,10 @@
+{namespace googletagmanager=Tx_GoogleTagManager_ViewHelpers}
+<!-- Google Tag Manager -->
+<script language="text/javascript">
+	if(typeof dataLayer != 'undefined')
+		<f:for each="{vars}" as="var">
+			<googletagmanager:dataLayer name="{var.datalayervar.label}" value="{var.datalayervar.value}" />
+		</f:for>
+	}
+</script>
+<!-- End Google Tag Manager -->

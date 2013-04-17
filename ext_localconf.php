@@ -10,3 +10,11 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'Tracking' => ''
 	)
 );
+Tx_Extbase_Utility_Extension::configurePlugin(
+	$_EXTKEY,
+	'DataLayer',
+	array(
+		'DataLayer' => 'index'
+	)
+);
+
