@@ -10,6 +10,10 @@ class Tx_GoogleTagManager_ViewHelpers_DataLayerViewHelper extends Tx_Fluid_Core_
 	 * @return string
 	 */
 	public function render($name,$value) {
-		return 'dataLayer.push({\''.$name.'\': \''.$value.'\'});'.PHP_EOL;
+		if (is_array($value)){
+			return 'dataLayer.push({\''.$name.'\': '.json_encode($value).'});'.PHP_EOL;
+		} else {
+			return 'dataLayer.push({\''.$name.'\': \''.$value.'\'});'.PHP_EOL;
+		}
 	}
 }
