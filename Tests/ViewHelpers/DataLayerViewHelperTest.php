@@ -61,6 +61,13 @@ class Tx_GoogleTagManager_ViewHelpers_DataLayerViewHelperTest extends Tx_GoogleT
 	}
 
 	/**
+	 * @test
+	 */
+	public function renderWithNullValue() {
+		$this->assertEquals('', $this->viewHelper->render('foo', NULL));
+	}
+
+	/**
 	 * @param string $name
 	 * @param mixed $value
 	 * @return string
