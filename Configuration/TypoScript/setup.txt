@@ -21,3 +21,27 @@ plugin.tx_googletagmanager {
 		dataLayerVersion = {$const.tx_googletagmanager.settings.dataLayerVersion}
 	}
 }
+
+plugin.tx_googletagmanagerdatalayer = USER
+plugin.tx_googletagmanagerdatalayer {
+	userFunc      = tx_extbase_core_bootstrap->run
+	extensionName = GoogleTagManager
+	pluginName    = Tracking
+	controller    = Tracking
+	action        = values
+	switchableControllerActions {
+		Tracking {
+			1 = values
+		}
+	}
+	view {
+		templateRootPath = {$const.tx_googletagmanager.view.templateRootPath}
+		partialRootPath  = {$const.tx_googletagmanager.view.partialRootPath}
+		layoutRootPath   = {$const.tx_googletagmanager.view.layoutRootPath}
+	}
+	settings {
+		enable = {$const.tx_googletagmanager.settings.enable}
+		tagId = {$const.tx_googletagmanager.settings.tagId}
+		dataLayerVersion = {$const.tx_googletagmanager.settings.dataLayerVersion}
+	}
+}

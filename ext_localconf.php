@@ -4,7 +4,8 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Tracking',
 	array(
-		'Tracking' => 'index'
+		'Tracking' => 'index',
+		'Tracking' => 'values'
 	),
 	array(
 		'Tracking' => ''

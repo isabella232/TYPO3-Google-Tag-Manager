@@ -18,6 +18,18 @@ class Tx_GoogleTagManager_Domain_Model_DataLayerRegistry implements t3lib_Single
 		$this->vars[$name] = $value;
 	}
 	/**
+	 * @return array
+	 */
+	public function getVars() {
+		return $this->vars;
+	}
+	/**
+	 * clear values
+	 */
+	public function clear(){
+		$this->vars = array();
+	}
+	/**
 	 * @return string
 	 */
 	public function getJSVariables(){
