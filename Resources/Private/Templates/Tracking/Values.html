@@ -1,10 +1,11 @@
 {namespace googletagmanager=Tx_GoogleTagManager_ViewHelpers}
 <!-- Google Tag Manager cached vars -->
 <script type="text/javascript">
-if(typeof dataLayer != 'undefined'){
-    <f:for each="{vars}" as="value" key="key">
-        <googletagmanager:dataLayer name="{key}" value="{value}" />
-    </f:for>
+if(typeof dataLayer == 'undefined'){
+	dataLayer = [];
 }
+<f:for each="{vars}" as="value" key="key">
+	<googletagmanager:dataLayer name="{key}" value="{value}" />
+</f:for>
 </script>
 <!-- End Google Tag Manager cached vars -->

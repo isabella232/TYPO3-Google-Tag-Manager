@@ -45,3 +45,5 @@ plugin.tx_googletagmanagerdatalayer {
 		dataLayerVersion = {$const.tx_googletagmanager.settings.dataLayerVersion}
 	}
 }
+plugin.tx_googletagmanagerdatalayer_init = TEXT
+plugin.tx_googletagmanagerdatalayer_init.value = <script type="text/javascript">dataLayer = [];</script>
