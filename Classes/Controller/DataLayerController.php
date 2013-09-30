@@ -9,7 +9,7 @@ class Tx_GoogleTagManager_Controller_DataLayerController extends Tx_Extbase_MVC_
 	 */
 	public function indexAction() {
 		$vars = array();
-		if(isset($this->settings['datalayervars'])){
+		if(isset($this->settings['datalayervars']) && is_array($this->settings['datalayervars'])){
 			$vars = $this->settings['datalayervars'];
 		}
 		$this->view->assign('vars', $vars);
