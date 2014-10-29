@@ -1,6 +1,5 @@
 <?php
 require_once dirname(__FILE__).'/../../ViewHelpers/DataLayerViewHelper.php';
-require_once PATH_t3lib . 'interfaces/interface.t3lib_singleton.php';
 /**
  * Data Layer Container
  * @package GoogleTagManager
