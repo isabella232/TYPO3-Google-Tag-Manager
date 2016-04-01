@@ -1,78 +1,83 @@
 <?php
+namespace Aoe\GoogleTagManager\ViewHelpers;
 
-require_once dirname(__FILE__) . '/../../Tests/AbstractTestcase.php';
+use TYPO3\CMS\Core\Tests\BaseTestCase;
 
-/**
- * Tx_GoogleTagManager_ViewHelpers_DataLayerViewHelper test case.
- */
-class Tx_GoogleTagManager_ViewHelpers_DataLayerViewHelperTest extends Tx_GoogleTagManager_Tests_AbstractTestcase {
+class Tx_GoogleTagManager_ViewHelpers_DataLayerViewHelperTest extends BaseTestCase
+{
 
-	/**
-	 * @var Tx_GoogleTagManager_ViewHelpers_DataLayerViewHelper
-	 */
-	private $viewHelper;
+    /**
+     * @var DataLayerViewHelper
+     */
+    private $viewHelper;
 
-	/**
-	 * @var string
-	 */
-	private $varName = 'varName';
+    /**
+     * @var string
+     */
+    private $varName = 'varName';
 
-	/**
-	 * (non-PHPdoc)
-	 * @see PHPUnit_Framework_TestCase::setUp()
-	 */
-	protected function setUp() {
-		$this->viewHelper = new Tx_GoogleTagManager_ViewHelpers_DataLayerViewHelper();
+    /**
+     * (non-PHPdoc)
+     * @see PHPUnit_Framework_TestCase::setUp()
+     */
+    protected function setUp()
+    {
+        $this->viewHelper = new DataLayerViewHelper();
+    }
 
-	}
-	/**
-	 * (non-PHPdoc)
-	 * @see PHPUnit_Framework_TestCase::tearDown()
-	 */
-	protected function tearDown() {
-		$this->viewHelper = NULL;
+    /**
+     * (non-PHPdoc)
+     * @see PHPUnit_Framework_TestCase::tearDown()
+     */
+    protected function tearDown()
+    {
+        $this->viewHelper = null;
+    }
 
-	}
+    /**
+     * @return array
+     */
+    public function allDataProvider()
+    {
+        $sampleObject = new \stdClass();
+        $sampleObject->foo = 1;
+        $sampleObject->bar = 'baz';
+        return array(
+            array(true, $this->createJsCode('true')), // boolean
+            array(false, $this->createJsCode('false')), // boolean
+            array(1, $this->createJsCode(1)), // integer
+            array(0.995, $this->createJsCode(0.995)), // float
+            array('foo', $this->createJsCode('\'foo\'')), // string
+            array(array('foo', 'bar'), $this->createJsCode('["foo","bar"]')), // array
+            array($sampleObject, $this->createJsCode('{"foo":1,"bar":"baz"}')) // object
+        );
+    }
 
-	/**
-	 * @return array
-	 */
-	public function allDataProvider() {
-		$sampleObject = new stdClass();
-		$sampleObject->foo = 1;
-		$sampleObject->bar = 'baz';
-		return array(
-			array(TRUE, $this->createJsCode('true')), // boolean
-			array(FALSE, $this->createJsCode('false')), // boolean
-			array(1, $this->createJsCode(1)), // integer
-			array(0.995, $this->createJsCode(0.995)), // float
-			array('foo', $this->createJsCode('\'foo\'')), // string
-			array(array('foo','bar'), $this->createJsCode('["foo","bar"]')), // array
-			array($sampleObject, $this->createJsCode('{"foo":1,"bar":"baz"}')) // object
-		);
-	}
+    /**
+     * @test
+     * @dataProvider allDataProvider
+     * @param mixed $value
+     * @param mixed $expected
+     */
+    public function render($value, $expected)
+    {
+        $this->assertEquals($expected, $this->viewHelper->render($this->varName, $value));
+    }
 
-	/**
-	 * @test
-	 * @dataProvider allDataProvider
-	 */
-	public function render($value, $expected) {
-		$this->assertEquals($expected, $this->viewHelper->render($this->varName, $value));
-	}
+    /**
+     * @test
+     */
+    public function renderWithNullValue()
+    {
+        $this->assertEquals('', $this->viewHelper->render('foo', null));
+    }
 
-	/**
-	 * @test
-	 */
-	public function renderWithNullValue() {
-		$this->assertEquals('', $this->viewHelper->render('foo', NULL));
-	}
-
-	/**
-	 * @param string $name
-	 * @param mixed $value
-	 * @return string
-	 */
-	private function createJsCode($value) {
-		return 'dataLayer.push({\'' . $this->varName . '\': ' . $value . '});' . PHP_EOL;
-	}
+    /**
+     * @param mixed $value
+     * @return string
+     */
+    private function createJsCode($value)
+    {
+        return 'dataLayer.push({\'' . $this->varName . '\': ' . $value . '});' . PHP_EOL;
+    }
 }

@@ -1,29 +1,35 @@
 <?php
-/**
- * Render Tracking Code for Google Tag Manager
- *
- */
-class Tx_GoogleTagManager_Controller_TrackingController extends Tx_Extbase_MVC_Controller_ActionController {
-	/**
-	 * index action generate the base tag code
-	 */
-	public function indexAction() {
-		if(!$this->settings['enable']){
-			throw new Tx_Extbase_MVC_Exception_StopAction ();
-		}
-		$this->view->assign('tagManagerID', $this->settings['tagId']);
-		$this->view->assign('dataLayerVersion', $this->settings['dataLayerVersion']);
-	}
-	/**
-	 * generate the data layer values code
-	 */
-	public function valuesAction() {
-		if(!$this->settings['enable']){
-			throw new Tx_Extbase_MVC_Exception_StopAction ();
-		}
-		/** @var Tx_GoogleTagManager_Domain_Model_DataLayerRegistry $registry */
-		$registry = t3lib_div::makeInstance('Tx_GoogleTagManager_Domain_Model_DataLayerRegistry');
-		$this->view->assign('vars', $registry->getVars());
-		$registry->clear();
-	}
+namespace Aoe\GoogleTagManager\Controller;
+
+use Aoe\GoogleTagManager\Model\DataLayerRegistry;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
+
+class TrackingController extends ActionController
+{
+    /**
+     * index action generate the base tag code
+     */
+    public function indexAction()
+    {
+        if (!$this->settings['enable']) {
+            throw new StopActionException();
+        }
+        $this->view->assign('tagManagerID', $this->settings['tagId']);
+        $this->view->assign('dataLayerVersion', $this->settings['dataLayerVersion']);
+    }
+
+    /**
+     * generate the data layer values code
+     */
+    public function valuesAction()
+    {
+        if (!$this->settings['enable']) {
+            throw new StopActionException();
+        }
+        /** @var DataLayerRegistry $registry */
+        $registry = $this->objectManager->get(DataLayerRegistry::class);
+        $this->view->assign('vars', $registry->getVars());
+        $registry->clear();
+    }
 }
