@@ -1,0 +1,97 @@
+language: php
+
+php:
+  - 5.5
+  - 5.6
+  - 7.0
+
+env:
+  - TYPO3_VERSION=^6.2 COVERAGE=0 FUNCTIONAL=0
+  - TYPO3_VERSION=^7.6 COVERAGE=0 FUNCTIONAL=0
+  - TYPO3_VERSION=dev-master COVERAGE=0 FUNCTIONAL=0
+
+matrix:
+  exclude:
+    - env: TYPO3_VERSION=dev-master COVERAGE=0 FUNCTIONAL=0
+      php: 5.5
+    - env: TYPO3_VERSION=dev-master COVERAGE=0 FUNCTIONAL=0
+      php: 5.6
+  include:
+    - php: 5.5
+      env: TYPO3_VERSION=^6.2 COVERAGE=0 FUNCTIONAL=1
+    - php: 5.5
+      env: TYPO3_VERSION=^7.6 COVERAGE=1 FUNCTIONAL=1
+    - php: 7.0
+      env: TYPO3_VERSION=dev-master COVERAGE=0 FUNCTIONAL=1
+  allow_failures:
+    - env: TYPO3_VERSION=dev-master COVERAGE=0 FUNCTIONAL=1
+    - env: TYPO3_VERSION=dev-master COVERAGE=0 FUNCTIONAL=0
+
+sudo: false
+
+addons:
+  apt:
+    packages:
+      - parallel
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_install:
+  - composer self-update
+  - composer --version
+
+before_script:
+  # Removes xdebug to speed up tests
+  - phpenv config-rm xdebug.ini
+  # Installs TYPO3
+  - composer require typo3/cms=$TYPO3_VERSION;
+  # If TYPO3_VERSION is NOT 6.2.x
+  - >
+    if [[ "$TYPO3_VERSION" != "^6.2" ]]; then
+      export "TYPO3_PATH_WEB"=$PWD/.Build/Web;
+    else
+      export "TYPO3_PATH_WEB"=$PWD;
+    fi
+  # Restore composer.json
+  - git checkout composer.json;
+  # Locating UnitTests.xml
+  - export "UNIT_XML"=`find . -name 'UnitTests.xml' -type f`
+  # Location FunctionalTests.xml
+  - export "FUNCTIONAL_XML"=`find . -name 'FunctionalTests.xml' -type f`
+
+script:
+  - >
+    if [[ "$COVERAGE" == "0" ]]; then
+      echo;
+      echo "Running unit tests";
+      .Build/bin/phpunit --colors -c $UNIT_XML Tests/Unit/*
+    fi
+  - >
+    if [[ "$COVERAGE" == "1" ]]; then
+      echo;
+      echo "Running unit tests";
+      .Build/bin/phpunit --coverage-clover=unittest-coverage.clover --colors -c $UNIT_XML Tests/Unit/*
+    fi
+  - >
+    if [[ "$FUNCTIONAL" == "1" ]]; then
+      echo;
+      export typo3DatabaseName="typo3";
+      export typo3DatabaseHost="localhost";
+      export typo3DatabaseUsername="root";
+      export typo3DatabasePassword="";
+      find 'Tests/Functional' -wholename '*Test.php' ! -name 'DatabaseTtContentTest.php' | parallel --gnu 'echo; echo "Running functional test suite {}"; .Build/bin/phpunit --coverage-clover={}functionaltest-coverage.clover --colors -c $FUNCTIONAL_XML {}'
+    fi
+  - >
+    if [[ "$COVERAGE" == "1" ]]; then
+      echo;
+      echo "Uploading code coverage results";
+      wget https://scrutinizer-ci.com/ocular.phar
+      php ocular.phar code-coverage:upload --format=php-clover unittest-coverage.clover
+      find 'Tests/Functional' -wholename '*Test.php' ! -name 'DatabaseTtContentTest.php' -exec php ocular.phar code-coverage:upload --format=php-clover {}functionaltest-coverage.clover \;
+    fi
+  - >
+    echo;
+    echo "Running php lint";
+    find . -name \*.php ! -path "./.Build/*" ! -path "./scripts/*" ! -path "./typo3_src/*" ! -path "./typo3temp/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;
