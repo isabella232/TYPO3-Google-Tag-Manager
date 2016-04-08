@@ -2,12 +2,12 @@
     "name": "aoe/google-tag-manager",
     "description": "Extension that creates an interface for Google Tag Manager",
     "type": "typo3-cms-extension",
-    "homepage": "https://forge.typo3.org/projects/extension-google_tag_manager",
+    "homepage": "https://github.com/AOEpeople/TYPO3-Google-Tag-Manager",
     "license": "GPL-3.0",
     "support": {
         "email": "dev@aoe.com",
-        "issues": "https://forge.typo3.org/projects/extension-google_tag_manager/issues",
-        "source": "https://forge.typo3.org/projects/extension-google_tag_manager"
+        "issues": "https://github.com/AOEpeople/TYPO3-Google-Tag-Manager/issues",
+        "source": "https://github.com/AOEpeople/TYPO3-Google-Tag-Manager"
     },
     "authors": [
         {
