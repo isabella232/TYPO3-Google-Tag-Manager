@@ -61,6 +61,24 @@ Example::
     <googletagmanager:dataLayer name="tx_googletagmanager_dataLayerVersion" value="{dataLayerVersion}" /></script>
 
 
+Pushing variables in the Data Layer using a Hook
+------------------------------------------------
+
+You can also use a Hook for pushing variables to the Data Layer globally.
+
+Example::
+
+    namespace Acme\Foo;
+    class Bar implements Aoe\GoogleTagManager\Service\VariableProviderInterface
+    {
+        public function getVariables()
+        {
+            return array('bar' => 'baz');
+        }
+    }
+    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['google_tag_manager']['variableProviders'][] = Acme\Foo\Bar::class;
+
+
 Disable Tag Manager
 -------------------
 
