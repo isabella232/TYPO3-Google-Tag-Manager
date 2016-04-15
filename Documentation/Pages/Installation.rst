@@ -68,6 +68,7 @@ You can also use a Hook for pushing variables to the Data Layer globally.
 
 Example::
 
+    // Class implementing the hook
     namespace Acme\Foo;
     class Bar implements Aoe\GoogleTagManager\Service\VariableProviderInterface
     {
@@ -76,6 +77,8 @@ Example::
             return array('bar' => 'baz');
         }
     }
+    
+    // Register the hooked class (for example in ext_localconf.php or in a Bootstrap class)
     $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['google_tag_manager']['variableProviders'][] = Acme\Foo\Bar::class;
 
 
