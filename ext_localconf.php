@@ -7,8 +7,7 @@ if (!defined('TYPO3_MODE')) {
     'Aoe.' . $_EXTKEY,
     'Tracking',
     array(
-        'Tracking' => 'index',
-        'Tracking' => 'values'
+        'Tracking' => 'index,values'
     ),
     array(
         'Tracking' => ''
