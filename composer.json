@@ -30,6 +30,11 @@
         "sebastian/phpcpd": "2.0.*",
         "phpmd/phpmd": "2.2.*"
     },
+    "autoload": {
+        "psr-4": {
+            "Aoe\\GoogleTagManager\\": "Classes/"
+        }
+    },
     "replace": {
         "google_tag_manager": "*"
     },
