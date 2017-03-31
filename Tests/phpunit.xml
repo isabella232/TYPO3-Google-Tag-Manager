@@ -1,6 +1,10 @@
-<phpunit colors="true" backupGlobals="false"
-         backupStaticAttributes="false" syntaxCheck="false" stopOnFailure="false"
-         convertErrorsToExceptions="true" convertNoticesToExceptions="true"
+<phpunit colors="true"
+         backupGlobals="false"
+         backupStaticAttributes="false"
+         syntaxCheck="false"
+         stopOnFailure="false"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
          convertWarningsToExceptions="true">
     <!-- Add testclasses -->
     <testsuites>

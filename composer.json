@@ -35,6 +35,11 @@
             "Aoe\\GoogleTagManager\\": "Classes/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "TYPO3\\CMS\\Core\\Tests\\": "typo3/sysext/core/Tests/"
+        }
+    },
     "replace": {
         "google_tag_manager": "*"
     },

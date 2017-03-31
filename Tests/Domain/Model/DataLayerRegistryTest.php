@@ -43,6 +43,7 @@ class DataLayerRegistryTest extends BaseTestCase implements VariableProviderInte
      */
     protected function setUp()
     {
+        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['google_tag_manager']['variableProviders']['test'] = self::class;
         $this->dataLayerRegistry = new DataLayerRegistry(new ObjectManager());
     }
 
@@ -52,6 +53,7 @@ class DataLayerRegistryTest extends BaseTestCase implements VariableProviderInte
      */
     protected function tearDown()
     {
+        unset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['google_tag_manager']['variableProviders']['test']);
         $this->dataLayerRegistry = null;
     }
 
@@ -83,11 +85,10 @@ class DataLayerRegistryTest extends BaseTestCase implements VariableProviderInte
      */
     public function shouldAddVarsFromHooks()
     {
-        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['google_tag_manager']['variableProviders']['test'] = self::class;
         $vars = $this->dataLayerRegistry->getVars();
         $this->assertArrayHasKey('foo', $vars);
         $this->assertEquals('bar', $vars['foo']);
-        unset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['google_tag_manager']['variableProviders']['test']);
+
     }
 
     /**

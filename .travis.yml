@@ -18,11 +18,7 @@ matrix:
       php: 5.6
   include:
     - php: 5.5
-      env: TYPO3_VERSION=^6.2 COVERAGE=0 FUNCTIONAL=1
-    - php: 5.5
-      env: TYPO3_VERSION=^7.6 COVERAGE=1 FUNCTIONAL=1
-    - php: 7.0
-      env: TYPO3_VERSION=dev-master COVERAGE=0 FUNCTIONAL=1
+      env: TYPO3_VERSION=^7.6 COVERAGE=1 FUNCTIONAL=0
   allow_failures:
     - env: TYPO3_VERSION=dev-master COVERAGE=0 FUNCTIONAL=1
     - env: TYPO3_VERSION=dev-master COVERAGE=0 FUNCTIONAL=0
@@ -43,8 +39,6 @@ before_install:
   - composer --version
 
 before_script:
-  # Removes xdebug to speed up tests
-  - phpenv config-rm xdebug.ini
   # Installs TYPO3
   - composer require typo3/cms=$TYPO3_VERSION;
   # If TYPO3_VERSION is NOT 6.2.x
@@ -56,32 +50,19 @@ before_script:
     fi
   # Restore composer.json
   - git checkout composer.json;
-  # Locating UnitTests.xml
-  - export "UNIT_XML"=`find . -name 'UnitTests.xml' -type f`
-  # Location FunctionalTests.xml
-  - export "FUNCTIONAL_XML"=`find . -name 'FunctionalTests.xml' -type f`
 
 script:
   - >
     if [[ "$COVERAGE" == "0" ]]; then
       echo;
       echo "Running unit tests";
-      vendor/bin/phpunit --colors -c $UNIT_XML Tests/Unit/*
+      vendor/bin/phpunit --colors -c Tests/phpunit.xml
     fi
   - >
     if [[ "$COVERAGE" == "1" ]]; then
       echo;
       echo "Running unit tests";
-      vendor/bin/phpunit --coverage-clover=unittest-coverage.clover --colors -c $UNIT_XML Tests/Unit/*
-    fi
-  - >
-    if [[ "$FUNCTIONAL" == "1" ]]; then
-      echo;
-      export typo3DatabaseName="typo3";
-      export typo3DatabaseHost="localhost";
-      export typo3DatabaseUsername="root";
-      export typo3DatabasePassword="";
-      find 'Tests/Functional' -wholename '*Test.php' ! -name 'DatabaseTtContentTest.php' | parallel --gnu 'echo; echo "Running functional test suite {}"; vendor/bin/phpunit --coverage-clover={}functionaltest-coverage.clover --colors -c $FUNCTIONAL_XML {}'
+      vendor/bin/phpunit --coverage-clover=unittest-coverage.clover --colors -c Tests/phpunit.xml
     fi
   - >
     if [[ "$COVERAGE" == "1" ]]; then
@@ -89,7 +70,6 @@ script:
       echo "Uploading code coverage results";
       wget https://scrutinizer-ci.com/ocular.phar
       php ocular.phar code-coverage:upload --format=php-clover unittest-coverage.clover
-      find 'Tests/Functional' -wholename '*Test.php' ! -name 'DatabaseTtContentTest.php' -exec php ocular.phar code-coverage:upload --format=php-clover {}functionaltest-coverage.clover \;
     fi
   - >
     echo;
