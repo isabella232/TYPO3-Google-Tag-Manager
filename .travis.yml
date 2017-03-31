@@ -94,4 +94,4 @@ script:
   - >
     echo;
     echo "Running php lint";
-    find . -name \*.php ! -path "./.Build/*" ! -path "./scripts/*" ! -path "./typo3_src/*" ! -path "./typo3temp/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;
+    find . -name \*.php ! -path "./vendor/*" ! -path "./.Build/*" ! -path "./scripts/*" ! -path "./typo3_src/*" ! -path "./typo3temp/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;
