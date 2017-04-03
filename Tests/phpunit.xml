@@ -9,7 +9,7 @@
     <!-- Add testclasses -->
     <testsuites>
         <testsuite name="google_tag_manager">
-            <directory suffix="Test.php">./</directory>
+            <directory suffix="Test.php">./Unit/</directory>
         </testsuite>
     </testsuites>
 </phpunit>

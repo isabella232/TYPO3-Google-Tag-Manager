@@ -28,10 +28,21 @@ namespace Aoe\GoogleTagManager\Model;
 use Aoe\GoogleTagManager\Service\VariableProviderInterface;
 use Aoe\GoogleTagManager\ViewHelpers\DataLayerViewHelper;
 use TYPO3\CMS\Core\Tests\BaseTestCase;
+use TYPO3\CMS\Core\Tests\FunctionalTestCase;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
-class DataLayerRegistryTest extends BaseTestCase implements VariableProviderInterface
+class DataLayerRegistryTest extends FunctionalTestCase implements VariableProviderInterface
 {
+    /**
+    * @var array
+    */
+    protected $coreExtensionsToLoad = array('cms', 'core', 'frontend', 'version', 'lang', 'extensionmanager');
+
+    /**
+     * @var array
+     */
+    protected $testExtensionsToLoad = array('google_tag_manager');
+
     /**
      * @var DataLayerRegistry
      */
@@ -41,8 +52,9 @@ class DataLayerRegistryTest extends BaseTestCase implements VariableProviderInte
      * (non-PHPdoc)
      * @see PHPUnit_Framework_TestCase::setUp()
      */
-    protected function setUp()
+    public function setUp()
     {
+        parent::setup();
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['google_tag_manager']['variableProviders']['test'] = self::class;
         $this->dataLayerRegistry = new DataLayerRegistry(new ObjectManager());
     }
@@ -51,8 +63,9 @@ class DataLayerRegistryTest extends BaseTestCase implements VariableProviderInte
      * (non-PHPdoc)
      * @see PHPUnit_Framework_TestCase::tearDown()
      */
-    protected function tearDown()
+    public function tearDown()
     {
+        parent::tearDown();
         unset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['google_tag_manager']['variableProviders']['test']);
         $this->dataLayerRegistry = null;
     }
