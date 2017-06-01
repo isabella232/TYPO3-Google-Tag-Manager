@@ -29,7 +29,7 @@ $EM_CONF[$_EXTKEY] = array(
     'modify_tables' => '',
     'clearCacheOnLoad' => 0,
     'lockType' => '',
-    'version' => '1.0.8',
+    'version' => '1.1.0',
     'constraints' => array(
         'depends' => array(
             'typo3' => '6.2.0-0.0.0',
@@ -40,6 +40,6 @@ $EM_CONF[$_EXTKEY] = array(
         'conflicts' => array(),
         'suggests' => array(),
     ),
-    '_md5_values_when_last_written' => 'a:10:{s:12:"ext_icon.gif";s:4:"4461";s:17:"ext_localconf.php";s:4:"3236";s:14:"ext_tables.php";s:4:"7404";s:41:"Classes/Controller/TrackingController.php";s:4:"2884";s:43:"Classes/ViewHelpers/DataLayerViewHelper.php";s:4:"050a";s:38:"Configuration/TypoScript/constants.txt";s:4:"8dd3";s:34:"Configuration/TypoScript/setup.txt";s:4:"c5db";s:43:"Resources/Private/Language/locallang_db.xml";s:4:"fb79";s:47:"Resources/Private/Templates/Tracking/Index.html";s:4:"7666";s:14:"doc/manual.sxw";s:4:"e645";}',
+    '_md5_values_when_last_written' => '',
     'suggests' => array(),
 );
