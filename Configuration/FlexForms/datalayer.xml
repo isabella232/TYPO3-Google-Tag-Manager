@@ -7,17 +7,13 @@
 		<type>array</type>
 		<el>
 			<settings.datalayervars type="array">
-			<tx_templavoila>
-				<title>DataLayer Values:</title>
-			</tx_templavoila>
 			<type>array</type>
+			<title>DataLayer Values:</title>
 			<section>1</section>
 			<el type="array">
 				<datalayervar type="array">
 					<type>array</type>
-					<tx_templavoila>
-						<title> DataLayer Value</title>
-					</tx_templavoila>
+					<title>DataLayer Value</title>
 					<el type="array">
 						<label>
 							<TCEforms>
