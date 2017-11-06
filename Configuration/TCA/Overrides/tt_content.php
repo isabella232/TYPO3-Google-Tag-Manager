@@ -27,10 +27,24 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['googletagmanager_datalayer'] = 'layout,recursive,select_key,pages';
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['googletagmanager_datalayer'] = 'pi_flexform';
+call_user_func(function () {
+    /**
+     * Register plugin
+     */
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+        'Aoe.google_tag_manager',
+        'DataLayer',
+        'Google Tag Manager DataLayer'
+    );
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
-    'googletagmanager_datalayer',
-    'FILE:EXT:google_tag_manager/Configuration/FlexForms/datalayer.xml'
-);
+    /**
+     * Register Flexforms-configuration for plugin 'DataLayer'
+     */
+    $pluginSignature = 'googletagmanager_datalayer';
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+        $pluginSignature,
+        'FILE:EXT:google_tag_manager/Configuration/FlexForms/datalayer.xml'
+    );
+    $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,recursive,select_key,pages';
+    $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
+});

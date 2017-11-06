@@ -4,20 +4,20 @@ if (!defined('TYPO3_MODE')) {
 }
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'Aoe.' . $_EXTKEY,
+    'Aoe.google_tag_manager',
     'Tracking',
-    array(
+    [
         'Tracking' => 'index,values'
-    ),
-    array(
+    ],
+    [
         'Tracking' => ''
-    )
+    ]
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'Aoe.' . $_EXTKEY,
+    'Aoe.google_tag_manager',
     'DataLayer',
-    array(
+    [
         'DataLayer' => 'index'
-    )
+    ]
 );
