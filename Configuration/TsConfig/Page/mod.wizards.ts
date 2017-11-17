@@ -9,12 +9,4 @@ mod.wizards.newContentElement.wizardItems.plugins.elements.googletagmanager_data
     }
 }
 
-# TODO: Remove 6.2 configuration after upgrade to TYPO3 7.6
-[compatVersion = 7.6.0]
-[else]
-    mod.wizards.newContentElement.wizardItems.plugins.elements.googletagmanager_datalayer {
-        icon = ../../../../typo3conf/ext/google_tag_manager/Resources/Public/Images/Backend/GoogleTagManager.gif
-    }
-[end]
-
 mod.wizards.newContentElement.wizardItems.plugins.show := addToList( googletagmanager_datalayer )
