@@ -55,7 +55,7 @@ script:
     if [[ "$COVERAGE" == "0" ]]; then
       echo;
       echo "Running unit tests";
-      vendor/bin/phpunit --colors -c Tests/phpunit.xml
+      .Build/bin/phpunit --colors -c Tests/phpunit.xml
     fi
   - >
     if [[ "$COVERAGE" == "1" ]]; then
