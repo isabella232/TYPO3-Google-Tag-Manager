@@ -70,6 +70,15 @@ script:
       wget https://scrutinizer-ci.com/ocular.phar
       php ocular.phar code-coverage:upload --format=php-clover unittest-coverage.clover
     fi
+
+  - echo "Running functional tests"
+  - >
+    export typo3DatabaseHost="localhost"
+    export typo3DatabaseName="typo3"
+    export typo3DatabaseUsername="root"
+    export typo3DatabasePassword=""
+    .Build/bin/phpunit -c .Build/Web/typo3/sysext/core/Build/FunctionalTests.xml Tests/Functional/
+
   - >
     echo;
     echo "Running php lint";

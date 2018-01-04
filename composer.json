@@ -17,7 +17,9 @@
         }
     ],
     "config": {
-        "secure-http": false
+        "secure-http": false,
+        "vendor-dir": ".Build/vendor",
+        "bin-dir": ".Build/bin"
     },
     "require": {
         "php": ">=5.5.0",
@@ -40,11 +42,23 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "TYPO3\\CMS\\Core\\Tests\\": "typo3/sysext/core/Tests/"
+            "TYPO3\\CMS\\Core\\Tests\\": ".Build/Web/typo3/sysext/core/Tests/"
         }
     },
     "replace": {
         "google_tag_manager": "*"
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "mkdir -p .Build/Web/typo3conf/ext/",
+            "[ -L .Build/Web/typo3conf/ext/google_tag_manager ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/google_tag_manager"
+        ]
+    },
+    "extra": {
+        "typo3/cms": {
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "web-dir": ".Build/Web"
+        }
     },
     "keywords": [
         "TYPO3",

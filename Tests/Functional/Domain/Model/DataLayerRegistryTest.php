@@ -36,12 +36,12 @@ class DataLayerRegistryTest extends FunctionalTestCase implements VariableProvid
     /**
     * @var array
     */
-    protected $coreExtensionsToLoad = array('cms', 'core', 'frontend', 'version', 'lang', 'extensionmanager');
+    protected $coreExtensionsToLoad = array('cms', 'core', 'frontend', 'version', 'lang', 'extensionmanager', 'fluid');
 
     /**
      * @var array
      */
-    protected $testExtensionsToLoad = array('google_tag_manager');
+    protected $testExtensionsToLoad = array('typo3conf/ext/google_tag_manager');
 
     /**
      * @var DataLayerRegistry
