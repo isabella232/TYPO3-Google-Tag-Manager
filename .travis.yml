@@ -40,44 +40,34 @@ before_install:
 before_script:
   # Installs TYPO3
   - composer require --dev typo3/cms=$TYPO3_VERSION;
-  # If TYPO3_VERSION is NOT 6.2.x
-  - >
-    if [[ "$TYPO3_VERSION" != "^6.2" ]]; then
-      export "TYPO3_PATH_WEB"=$PWD/.Build/Web;
-    else
-      export "TYPO3_PATH_WEB"=$PWD;
-    fi
+  - export "TYPO3_PATH_WEB"=$PWD/.Build/Web;
   # Restore composer.json
   - git checkout composer.json;
 
 script:
+  # Execute unit tests
   - >
-    if [[ "$COVERAGE" == "0" ]]; then
-      echo;
-      echo "Running unit tests";
-      .Build/bin/phpunit --colors -c Tests/phpunit.xml
-    fi
-  - >
+    echo "Running unit tests";
     if [[ "$COVERAGE" == "1" ]]; then
-      echo;
-      echo "Running unit tests";
       .Build/bin/phpunit --coverage-clover=unittest-coverage.clover --colors -c Tests/phpunit.xml
-    fi
-  - >
-    if [[ "$COVERAGE" == "1" ]]; then
-      echo;
+
       echo "Uploading code coverage results";
       wget https://scrutinizer-ci.com/ocular.phar
       php ocular.phar code-coverage:upload --format=php-clover unittest-coverage.clover
+    else
+      .Build/bin/phpunit --colors -c Tests/phpunit.xml
     fi
 
-  - echo "Running functional tests"
+  # Execute functional tests, if enabled
   - >
-    export typo3DatabaseHost="localhost";
-    export typo3DatabaseName="typo3";
-    export typo3DatabaseUsername="root";
-    export typo3DatabasePassword="";
-    .Build/bin/phpunit -c .Build/Web/typo3/sysext/core/Build/FunctionalTests.xml Tests/Functional/
+    if [[ "$FUNCTIONAL" == "1" ]]; then
+      echo "Running functional tests"
+      export typo3DatabaseHost="localhost";
+      export typo3DatabaseName="typo3";
+      export typo3DatabaseUsername="root";
+      export typo3DatabasePassword="";
+      .Build/bin/phpunit -c .Build/Web/typo3/sysext/core/Build/FunctionalTests.xml Tests/Functional/
+    fi
 
   - >
     echo;
