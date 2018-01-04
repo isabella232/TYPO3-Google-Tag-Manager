@@ -4,7 +4,7 @@ namespace Aoe\GoogleTagManager\Model;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2016 AOE GmbH <dev@aoe.com>
+ *  (c) 2018 AOE GmbH <dev@aoe.com>
  *
  *  All rights reserved
  *
@@ -27,21 +27,15 @@ namespace Aoe\GoogleTagManager\Model;
 
 use Aoe\GoogleTagManager\Service\VariableProviderInterface;
 use Aoe\GoogleTagManager\ViewHelpers\DataLayerViewHelper;
-use TYPO3\CMS\Core\Tests\BaseTestCase;
 use TYPO3\CMS\Core\Tests\FunctionalTestCase;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 class DataLayerRegistryTest extends FunctionalTestCase implements VariableProviderInterface
 {
     /**
-    * @var array
-    */
-    protected $coreExtensionsToLoad = array('cms', 'core', 'frontend', 'version', 'lang', 'extensionmanager', 'fluid');
-
-    /**
      * @var array
      */
-    protected $testExtensionsToLoad = array('typo3conf/ext/google_tag_manager');
+    protected $testExtensionsToLoad = ['typo3conf/ext/google_tag_manager'];
 
     /**
      * @var DataLayerRegistry
@@ -101,7 +95,6 @@ class DataLayerRegistryTest extends FunctionalTestCase implements VariableProvid
         $vars = $this->dataLayerRegistry->getVars();
         $this->assertArrayHasKey('foo', $vars);
         $this->assertEquals('bar', $vars['foo']);
-
     }
 
     /**
@@ -131,6 +124,6 @@ class DataLayerRegistryTest extends FunctionalTestCase implements VariableProvid
      */
     public function getVariables()
     {
-        return array('foo' => 'bar');
+        return ['foo' => 'bar'];
     }
 }

@@ -15,31 +15,21 @@ $EM_CONF[$_EXTKEY] = array(
     'description' => 'Create a interface for Google Tag Manager',
     'category' => 'plugin',
     'author' => 'Axel Jung',
-    'author_email' => 'axel.jung@aoe.com',
+    'author_email' => 'dev@aoe.com',
     'author_company' => 'AOE GmbH',
-    'shy' => '',
-    'dependencies' => 'extbase,fluid',
-    'conflicts' => '',
-    'priority' => '',
-    'module' => '',
     'state' => 'stable',
-    'internal' => '',
     'uploadfolder' => 0,
     'createDirs' => '',
-    'modify_tables' => '',
     'clearCacheOnLoad' => 0,
-    'lockType' => '',
     'version' => '2.0.1',
-    'constraints' => array(
-        'depends' => array(
+    'constraints' => [
+        'depends' => [
             'typo3' => '7.6.0-0.0.0',
             'php' => '5.5.0-0.0.0',
-            'extbase' => '1.3.0',
-            'fluid' => '1.3.0',
-        ),
-        'conflicts' => array(),
-        'suggests' => array(),
-    ),
-    '_md5_values_when_last_written' => '',
-    'suggests' => array(),
+            'extbase' => '',
+            'fluid' => '',
+        ],
+        'conflicts' => [],
+        'suggests' => []
+    ]
 );
