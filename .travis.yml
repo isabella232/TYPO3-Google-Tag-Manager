@@ -61,7 +61,7 @@ script:
     if [[ "$COVERAGE" == "1" ]]; then
       echo;
       echo "Running unit tests";
-      vendor/bin/phpunit --coverage-clover=unittest-coverage.clover --colors -c Tests/phpunit.xml
+      .Build/bin/phpunit --coverage-clover=unittest-coverage.clover --colors -c Tests/phpunit.xml
     fi
   - >
     if [[ "$COVERAGE" == "1" ]]; then
