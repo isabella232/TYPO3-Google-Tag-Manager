@@ -39,7 +39,7 @@ before_install:
 
 before_script:
   # Installs TYPO3
-  - composer require typo3/cms=$TYPO3_VERSION;
+  - composer require --dev typo3/cms=$TYPO3_VERSION;
   # If TYPO3_VERSION is NOT 6.2.x
   - >
     if [[ "$TYPO3_VERSION" != "^6.2" ]]; then
