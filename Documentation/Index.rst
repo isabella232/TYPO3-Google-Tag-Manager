@@ -30,7 +30,7 @@ Google Tag Manager
 		gtm, google tag manager
 
 	:Copyright:
-		2013 - 2016
+		2013 - 2018
 
 	:Author:
 		AOE GmbH
@@ -39,7 +39,7 @@ Google Tag Manager
 		dev@aoe.com
 
 	:License:
-		copyright 2013 - 2016 AOE GmbH
+		copyright 2013 - 2018 AOE GmbH
 
 		All rights reserved
 
@@ -73,6 +73,5 @@ Google Tag Manager
 
 	Pages/Introduction
 	Pages/Installation
-	Pages/Screenshots
 	Pages/Links
 	Pages/Aoe
