@@ -21,13 +21,13 @@
         "bin-dir": ".Build/bin"
     },
     "require": {
-        "php": ">=7.0",
-        "typo3/cms-core": ">=8.7.0",
-        "typo3/cms-extbase": "*",
-        "typo3/cms-fluid": "*"
+        "php": ">=5.5",
+        "typo3/cms-core": "^7.6 || ^8.7 || ^9.5",
+        "typo3/cms-extbase": "^7.6 || ^8.7 || ^9.5",
+        "typo3/cms-fluid": "^7.6 || ^8.7 || ^9.5"
     },
     "require-dev": {
-        "nimut/testing-framework": "4.1.3",
+        "nimut/testing-framework": "^2.0 || 4.1.3",
         "phpunit/phpcov": "*",
         "squizlabs/php_codesniffer": "*",
         "sebastian/phpcpd": "*",

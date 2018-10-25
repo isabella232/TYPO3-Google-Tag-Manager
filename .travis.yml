@@ -4,6 +4,7 @@ php:
   - 7.0
   - 7.1
   - 7.2
+  - 7.3
 
 env:
   - TYPO3_VERSION=^8.7 COVERAGE=0 FUNCTIONAL=0
@@ -16,15 +17,25 @@ matrix:
       php: 7.0
     - env: TYPO3_VERSION=^9.5 COVERAGE=0 FUNCTIONAL=0
       php: 7.1
+    - env: TYPO3_VERSION=dev-master COVERAGE=0 FUNCTIONAL=0
+      php: 7.0
+    - env: TYPO3_VERSION=dev-master COVERAGE=0 FUNCTIONAL=0
+      php: 7.1
   include:
+    - php: 7.2
+      env: TYPO3_VERSION=^7.6 COVERAGE=0 FUNCTIONAL=1
+    - php: 5.6
+      env: TYPO3_VERSION=^7.6 COVERAGE=0 FUNCTIONAL=1
     - php: 7.0
       env: TYPO3_VERSION=^8.7 COVERAGE=1 FUNCTIONAL=1
     - php: 7.2
       env: TYPO3_VERSION=^9.5 COVERAGE=0 FUNCTIONAL=1
+    - php: 7.2
+      env: TYPO3_VERSION=dev-master COVERAGE=0 FUNCTIONAL=1
   allow_failures:
     - env: TYPO3_VERSION=dev-master COVERAGE=0 FUNCTIONAL=1
     - env: TYPO3_VERSION=dev-master COVERAGE=0 FUNCTIONAL=0
-
+    - php: 7.3
 sudo: false
 
 addons:
@@ -43,8 +54,8 @@ before_install:
 before_script:
   # Enables us to test dev-master
   - composer config minimum-stability dev
-  # Installs TYPO3
-  - composer require --dev typo3/cms-core=$TYPO3_VERSION;
+  # Installs nimut/typo3-complete
+  - if [ "$TYPO3_VERSION" == "^7.6" ]; then travis_wait 30 composer require --dev typo3/cms=$TYPO3_VERSION; else composer require --dev nimut/typo3-complete=$TYPO3_VERSION; fi
   # Restore composer.json
   - git checkout composer.json;
   - export TYPO3_PATH_WEB=$PWD/.Build/Web;
