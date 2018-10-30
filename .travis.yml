@@ -54,11 +54,12 @@ before_install:
 before_script:
   # Enables us to test dev-master
   - composer config minimum-stability dev
+  - composer config prefer-stable true
   # Installs nimut/typo3-complete
-  - if [ "$TYPO3_VERSION" == "^7.6" ]; then travis_wait 30 composer require --dev typo3/cms=$TYPO3_VERSION; else composer require --dev nimut/typo3-complete=$TYPO3_VERSION; fi
+  - travis_wait 30 composer require --dev nimut/typo3-complete=$TYPO3_VERSION
   # Restore composer.json
   - git checkout composer.json;
-  - export TYPO3_PATH_WEB=$PWD/.Build/Web;
+  - export TYPO3_PATH_ROOT=$PWD/.Build/Web;
   - export UNIT_XML=".Build/vendor/nimut/testing-framework/res/Configuration/UnitTests.xml"
   - export FUNCTIONAL_XML=".Build/vendor/nimut/testing-framework/res/Configuration/FunctionalTests.xml"
 

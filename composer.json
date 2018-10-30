@@ -27,8 +27,8 @@
         "typo3/cms-fluid": "^7.6 || ^8.7 || ^9.5"
     },
     "require-dev": {
-        "nimut/testing-framework": "^2.0 || 4.1.3",
-        "phpunit/phpcov": "*",
+        "nimut/testing-framework": "^2.0 || ^4.0",
+        "phpunit/phpcov": "^3.1 || ^4.0",
         "squizlabs/php_codesniffer": "*",
         "sebastian/phpcpd": "*",
         "phpmd/phpmd": "*"

@@ -117,7 +117,8 @@ class DataLayerRegistryTest extends FunctionalTestCase implements VariableProvid
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionCode(1459503275);
 
-        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['google_tag_manager']['variableProviders']['test'] = DataLayerViewHelper::class;
+        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['google_tag_manager']['variableProviders']['test'] =
+            DataLayerViewHelper::class;
         $this->dataLayerRegistry->getVars();
     }
 
