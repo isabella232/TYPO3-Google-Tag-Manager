@@ -5,6 +5,9 @@ This is a TYPO3-Extension, that integrates Google Tag Manager in TYPO3.
 [![Build Status](https://travis-ci.org/AOEpeople/TYPO3-Google-Tag-Manager.svg?branch=master)](https://travis-ci.org/AOEpeople/TYPO3-Google-Tag-Manager)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/AOEpeople/TYPO3-Google-Tag-Manager/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/AOEpeople/TYPO3-Google-Tag-Manager/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/AOEpeople/TYPO3-Google-Tag-Manager/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/AOEpeople/TYPO3-Google-Tag-Manager/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/aoe/google-tag-manager/v/stable)](https://packagist.org/packages/aoe/google-tag-manager)
+[![Total Downloads](https://poser.pugx.org/aoe/google-tag-manager/downloads)](https://packagist.org/packages/aoe/google-tag-manager)
+[![License](https://poser.pugx.org/aoe/google-tag-manager/license)](https://packagist.org/packages/aoe/google-tag-manager)
 
 ## Download / Installation
 
