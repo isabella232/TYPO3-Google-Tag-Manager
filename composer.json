@@ -22,7 +22,6 @@
     },
     "require": {
         "php": ">=5.5",
-        "ext-json": "*",
         "typo3/cms-core": "^7.6 || ^8.7 || ^9.5",
         "typo3/cms-extbase": "^7.6 || ^8.7 || ^9.5",
         "typo3/cms-fluid": "^7.6 || ^8.7 || ^9.5"
@@ -38,6 +37,9 @@
         "psr-4": {
             "Aoe\\GoogleTagManager\\": "Classes/"
         }
+    },
+    "replace": {
+        "google_tag_manager": "self.version"
     },
     "scripts": {
         "post-autoload-dump": [
