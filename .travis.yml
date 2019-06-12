@@ -38,6 +38,9 @@ matrix:
     - php: 7.3
 sudo: false
 
+services:
+  - mysql
+
 addons:
   apt:
     packages:
