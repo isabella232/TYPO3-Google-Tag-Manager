@@ -22,17 +22,9 @@
     },
     "require": {
         "php": ">=5.5",
-        "typo3/cms-core": "^7.6 || ^8.7 || ^9.5 || ^10.4",
-        "typo3/cms-extbase": "^7.6 || ^8.7 || ^9.5 || ^10.4",
-        "typo3/cms-fluid": "^7.6 || ^8.7 || ^9.5 || ^10.4"
-    },
-    "require-dev": {
-        "nimut/testing-framework": "^2.0 || ^4.0",
-        "helhum/typo3-console": "*",
-        "phpunit/phpcov": "^3.1 || ^4.0",
-        "squizlabs/php_codesniffer": "*",
-        "sebastian/phpcpd": "*",
-        "phpmd/phpmd": "*"
+        "typo3/cms-core": "^7.6 || ^8.7 || ^9.5 || ^10.4 || ^11.1",
+        "typo3/cms-extbase": "^7.6 || ^8.7 || ^9.5 || ^10.4 || ^10.1",
+        "typo3/cms-fluid": "^7.6 || ^8.7 || ^9.5 || ^10.4 || ^11.1"
     },
     "autoload": {
         "psr-4": {
